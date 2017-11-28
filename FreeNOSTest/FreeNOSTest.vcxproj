@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F4A2365-500B-47EF-B856-E4EC67BFFDE8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>FreeNOSTest</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libexec;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libipc;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libfs;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libarch\;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libposix;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\build;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\kernel;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\config\;D:\work\codeTrainning\FreeNOSTest\FreeNOSTest\lib\libstd\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bin\bench\Main.cpp" />
+    <ClCompile Include="bin\cat\Main.cpp" />
+    <ClCompile Include="bin\mapiping\Main.cpp" />
+    <ClCompile Include="kernel\API\PrivExec.cpp" />
+    <ClCompile Include="kernel\API\ProcessCtl.cpp" />
+    <ClCompile Include="kernel\API\SystemInfo.cpp" />
+    <ClCompile Include="kernel\API\VMCopy.cpp" />
+    <ClCompile Include="kernel\API\VMCtl.cpp" />
+    <ClCompile Include="kernel\intel\IntelProcess.cpp" />
+    <ClCompile Include="kernel\Kernel.cpp" />
+    <ClCompile Include="kernel\Process.cpp" />
+    <ClCompile Include="kernel\ProcessManager.cpp" />
+    <ClCompile Include="kernel\ProcessShares.cpp" />
+    <ClCompile Include="kernel\Scheduler.cpp" />
+    <ClCompile Include="lib\liballoc\BitAllocator.cpp" />
+    <ClCompile Include="lib\liballoc\BublleAllocator.cpp" />
+    <ClCompile Include="lib\liballoc\PageAllocator.cpp" />
+    <ClCompile Include="lib\liballoc\SplitAllocator.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMCacheV6.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMCacheV7.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMControl.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMCore.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMFirstTable.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMInterrupt.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMIO.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMMap.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMPaging.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMSecondTable.cpp" />
+    <ClCompile Include="lib\libarch\arm\ARMTags.cpp" />
+    <ClCompile Include="lib\libarch\arm\broadcom\BroadcomGPIO.cpp" />
+    <ClCompile Include="lib\libarch\arm\broadcom\BroadcomInterrupt.cpp" />
+    <ClCompile Include="lib\libarch\arm\broadcom\BroadcomMailbox.cpp" />
+    <ClCompile Include="lib\libarch\arm\broadcom\BroadcomPower.cpp" />
+    <ClCompile Include="lib\libarch\arm\broadcom\BroadcomTimer.cpp" />
+    <ClCompile Include="lib\libarch\IntController.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelACPI.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelAPIC.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelBoot.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelCache.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelCore.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelMap.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelMP.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelPageDirectory.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelPageTable.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelPaging.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelPIC.cpp" />
+    <ClCompile Include="lib\libarch\intel\IntelPIT.cpp" />
+    <ClCompile Include="lib\libarch\IO.cpp" />
+    <ClCompile Include="lib\libarch\MemoryContext.cpp" />
+    <ClCompile Include="lib\libarch\MemoryMap.cpp" />
+    <ClCompile Include="lib\libarch\Timer.cpp" />
+    <ClCompile Include="lib\libexec\ELF.cpp" />
+    <ClCompile Include="lib\libexec\ExecutableFormat.cpp" />
+    <ClCompile Include="lib\libfs\Device.cpp" />
+    <ClCompile Include="lib\libfs\DeviceServer.cpp" />
+    <ClCompile Include="lib\libfs\File.cpp" />
+    <ClCompile Include="lib\libfs\FileSystem.cpp" />
+    <ClCompile Include="lib\libfs\FileSystemRequest.cpp" />
+    <ClCompile Include="lib\libipc\Channel.cpp" />
+    <ClCompile Include="lib\libipc\ChannelClient.cpp" />
+    <ClCompile Include="lib\libipc\ChannelRegistry.cpp" />
+    <ClCompile Include="lib\libipc\MemoryChannel.cpp" />
+    <ClCompile Include="lib\libmpi\MPI.cpp" />
+    <ClCompile Include="lib\libmpi\MPI_Comm.cpp" />
+    <ClCompile Include="lib\libmpi\MPI_Recv.cpp" />
+    <ClCompile Include="lib\libmpi\MPI_Send.cpp" />
+    <ClCompile Include="lib\libnet\IPV4.cpp" />
+    <ClCompile Include="lib\libnet\NetworkProtocol.cpp" />
+    <ClCompile Include="lib\libnet\NetworkQueue.cpp" />
+    <ClCompile Include="lib\libposix\dirent\opendir.cpp" />
+    <ClCompile Include="lib\libposix\dirent\readdir.cpp" />
+    <ClCompile Include="lib\libposix\fcntl\open.cpp" />
+    <ClCompile Include="lib\libposix\libgen\basename.cpp" />
+    <ClCompile Include="lib\libposix\libgen\dirname.cpp" />
+    <ClCompile Include="lib\libposix\Runtime.cpp" />
+    <ClCompile Include="lib\libposix\stdio\fclose.cpp" />
+    <ClCompile Include="lib\libposix\stdio\fopen.cpp" />
+    <ClCompile Include="lib\libposix\stdio\fread.cpp" />
+    <ClCompile Include="lib\libposix\stdio\printf.cpp" />
+    <ClCompile Include="lib\libposix\stdio\snprintf.cpp" />
+    <ClCompile Include="lib\libposix\stdio\vprintf.cpp" />
+    <ClCompile Include="lib\libposix\stdio\vsnprintf.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\atoi.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\exit.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\free.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\itoa.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\malloc.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\random.cpp" />
+    <ClCompile Include="lib\libposix\stdlib\strtol.cpp" />
+    <ClCompile Include="lib\libposix\string\memcpy.cpp" />
+    <ClCompile Include="lib\libposix\string\memset.cpp" />
+    <ClCompile Include="lib\libposix\string\strcasecmp.cpp" />
+    <ClCompile Include="lib\libposix\string\strcat.cpp" />
+    <ClCompile Include="lib\libposix\string\strchr.cpp" />
+    <ClCompile Include="lib\libposix\string\strcmp.cpp" />
+    <ClCompile Include="lib\libposix\string\strcpy.cpp" />
+    <ClCompile Include="lib\libposix\string\strdup.cpp" />
+    <ClCompile Include="lib\libposix\string\strerror.cpp" />
+    <ClCompile Include="lib\libposix\string\strlcpy.cpp" />
+    <ClCompile Include="lib\libposix\string\strlen.cpp" />
+    <ClCompile Include="lib\libposix\string\strncasecmp.cpp" />
+    <ClCompile Include="lib\libposix\string\strncat.cpp" />
+    <ClCompile Include="lib\libposix\string\strncmp.cpp" />
+    <ClCompile Include="lib\libposix\string\strncpy.cpp" />
+    <ClCompile Include="lib\libposix\string\strndup.cpp" />
+    <ClCompile Include="lib\libposix\string\strrchr.cpp" />
+    <ClCompile Include="lib\libposix\sys\stat\create.cpp" />
+    <ClCompile Include="lib\libposix\sys\stat\mkdir.cpp" />
+    <ClCompile Include="lib\libposix\sys\stat\mknod.cpp" />
+    <ClCompile Include="lib\libposix\sys\stat\stat.cpp" />
+    <ClCompile Include="lib\libposix\unistd\chdir.cpp" />
+    <ClCompile Include="lib\libposix\unistd\close.cpp" />
+    <ClCompile Include="lib\libposix\unistd\execv.cpp" />
+    <ClCompile Include="lib\libposix\unistd\forkexec.cpp" />
+    <ClCompile Include="lib\libposix\unistd\getcwd.cpp" />
+    <ClCompile Include="lib\libposix\unistd\gethostname.cpp" />
+    <ClCompile Include="lib\libposix\unistd\getpid.cpp" />
+    <ClCompile Include="lib\libposix\unistd\getppid.cpp" />
+    <ClCompile Include="lib\libposix\unistd\lseek.cpp" />
+    <ClCompile Include="lib\libposix\unistd\read.cpp" />
+    <ClCompile Include="lib\libposix\unistd\sleep.cpp" />
+    <ClCompile Include="lib\libposix\unistd\spawn.cpp" />
+    <ClCompile Include="lib\libposix\unistd\unlink.cpp" />
+    <ClCompile Include="lib\libposix\unistd\write.cpp" />
+    <ClCompile Include="lib\libstd\BitArray.cpp" />
+    <ClCompile Include="lib\libstd\Container.cpp" />
+    <ClCompile Include="lib\libstd\HashFunction.cpp" />
+    <ClCompile Include="lib\libstd\Log.cpp" />
+    <ClCompile Include="lib\libstd\MemoryBlock.cpp" />
+    <ClCompile Include="lib\libstd\String.cpp" />
+    <ClCompile Include="lib\libteken\teken.cpp" />
+    <ClCompile Include="server\core\CoreServer.cpp" />
+    <ClCompile Include="server\filesystem\LinnDirectory.cpp" />
+    <ClCompile Include="server\filesystem\LinnFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="build\host\include\Config.h" />
+    <ClInclude Include="build\host\include\System.h" />
+    <ClInclude Include="build\intel\pc\include\Config.h" />
+    <ClInclude Include="build\intel\pc\include\System.h" />
+    <ClInclude Include="build\intel\pc\rootfs\etc\Config.h" />
+    <ClInclude Include="config\arm\raspberry\System.h" />
+    <ClInclude Include="kernel\API.h" />
+    <ClInclude Include="config\intel\pc\System.h" />
+    <ClInclude Include="kernel\API\PrivExec.h" />
+    <ClInclude Include="kernel\API\ProcessCtl.h" />
+    <ClInclude Include="kernel\API\ProcessID.h" />
+    <ClInclude Include="kernel\API\SystemInfo.h" />
+    <ClInclude Include="kernel\API\VMCopy.h" />
+    <ClInclude Include="kernel\API\VMCtl.h" />
+    <ClInclude Include="kernel\API\VMShare.h" />
+    <ClInclude Include="kernel\intel\IntelKernel.h" />
+    <ClInclude Include="kernel\intel\IntelProcess.h" />
+    <ClInclude Include="kernel\intel\IntelSerial.h" />
+    <ClInclude Include="kernel\Kernel.h" />
+    <ClInclude Include="kernel\Process.h" />
+    <ClInclude Include="kernel\ProcessEvent.h" />
+    <ClInclude Include="kernel\ProcessManager.h" />
+    <ClInclude Include="kernel\ProcessShares.h" />
+    <ClInclude Include="kernel\Scheduler.h" />
+    <ClInclude Include="lib\liballoc\Allocator.h" />
+    <ClInclude Include="lib\liballoc\BitAllocator.h" />
+    <ClInclude Include="lib\liballoc\BublleAllocator.h" />
+    <ClInclude Include="lib\liballoc\PageAllocator.h" />
+    <ClInclude Include="lib\liballoc\PoolAllocator.h" />
+    <ClInclude Include="lib\liballoc\SplitAllocator.h" />
+    <ClInclude Include="lib\libarch\arm\ARMCacheV6.h" />
+    <ClInclude Include="lib\libarch\arm\ARMCacheV7.h" />
+    <ClInclude Include="lib\libarch\arm\ARMConstant.h" />
+    <ClInclude Include="lib\libarch\arm\ARMControl.h" />
+    <ClInclude Include="lib\libarch\arm\ARMCore.h" />
+    <ClInclude Include="lib\libarch\arm\ARMFirstTable.h" />
+    <ClInclude Include="lib\libarch\arm\ARMInterrupt.h" />
+    <ClInclude Include="lib\libarch\arm\ARMIO.h" />
+    <ClInclude Include="lib\libarch\arm\ARMMap.h" />
+    <ClInclude Include="lib\libarch\arm\ARMPaging.h" />
+    <ClInclude Include="lib\libarch\arm\ARMSecondTable.h" />
+    <ClInclude Include="lib\libarch\arm\ARMState.h" />
+    <ClInclude Include="lib\libarch\arm\ARMTags.h" />
+    <ClInclude Include="lib\libarch\arm\broadcom\BroadcomGPIO.h" />
+    <ClInclude Include="lib\libarch\arm\broadcom\BroadcomInterrupt.h" />
+    <ClInclude Include="lib\libarch\arm\broadcom\BroadcomMailbox.h" />
+    <ClInclude Include="lib\libarch\arm\broadcom\BroadcomPower.h" />
+    <ClInclude Include="lib\libarch\arm\broadcom\BroadcomTimer.h" />
+    <ClInclude Include="lib\libarch\BootImage.h" />
+    <ClInclude Include="lib\libarch\Core.h" />
+    <ClInclude Include="lib\libarch\CoreInfo.h" />
+    <ClInclude Include="lib\libarch\CoreManager.h" />
+    <ClInclude Include="lib\libarch\IntController.h" />
+    <ClInclude Include="lib\libarch\intel\IntelACPI.h" />
+    <ClInclude Include="lib\libarch\intel\IntelAPIC.h" />
+    <ClInclude Include="lib\libarch\intel\IntelBoot.h" />
+    <ClInclude Include="lib\libarch\intel\IntelCache.h" />
+    <ClInclude Include="lib\libarch\intel\IntelConstant.h" />
+    <ClInclude Include="lib\libarch\intel\IntelCore.h" />
+    <ClInclude Include="lib\libarch\intel\IntelIO.h" />
+    <ClInclude Include="lib\libarch\intel\IntelMap.h" />
+    <ClInclude Include="lib\libarch\intel\IntelMP.h" />
+    <ClInclude Include="lib\libarch\intel\IntelPageDirectory.h" />
+    <ClInclude Include="lib\libarch\intel\IntelPageTable.h" />
+    <ClInclude Include="lib\libarch\intel\IntelPaging.h" />
+    <ClInclude Include="lib\libarch\intel\IntelPIC.h" />
+    <ClInclude Include="lib\libarch\intel\IntelPIT.h" />
+    <ClInclude Include="lib\libarch\intel\IntelState.h" />
+    <ClInclude Include="lib\libarch\IO.h" />
+    <ClInclude Include="lib\libarch\Memory.h" />
+    <ClInclude Include="lib\libarch\MemoryContext.h" />
+    <ClInclude Include="lib\libarch\MemoryMap.h" />
+    <ClInclude Include="lib\libarch\Timer.h" />
+    <ClInclude Include="lib\libexec\ELF.h" />
+    <ClInclude Include="lib\libexec\ELFHeader.h" />
+    <ClInclude Include="lib\libexec\ExecutableFormat.h" />
+    <ClInclude Include="lib\libfs\Device.h" />
+    <ClInclude Include="lib\libfs\DeviceServer.h" />
+    <ClInclude Include="lib\libfs\Directory.h" />
+    <ClInclude Include="lib\libfs\File.h" />
+    <ClInclude Include="lib\libfs\FileCache.h" />
+    <ClInclude Include="lib\libfs\FileMode.h" />
+    <ClInclude Include="lib\libfs\FileStat.h" />
+    <ClInclude Include="lib\libfs\FileSystem.h" />
+    <ClInclude Include="lib\libfs\FileSystemMessage.h" />
+    <ClInclude Include="lib\libfs\FileSystemPath.h" />
+    <ClInclude Include="lib\libfs\FileSystemRequest.h" />
+    <ClInclude Include="lib\libfs\FileType.h" />
+    <ClInclude Include="lib\libfs\IOBuffer.h" />
+    <ClInclude Include="lib\libfs\Storage.h" />
+    <ClInclude Include="lib\libipc\Channel.h" />
+    <ClInclude Include="lib\libipc\ChannelClient.h" />
+    <ClInclude Include="lib\libipc\ChannelMessage.h" />
+    <ClInclude Include="lib\libipc\ChannelRegistry.h" />
+    <ClInclude Include="lib\libipc\ChannelServer.h" />
+    <ClInclude Include="lib\libipc\MemoryChannel.h" />
+    <ClInclude Include="lib\libmpi\mpi.h" />
+    <ClInclude Include="lib\libmpi\MPIMessage.h" />
+    <ClInclude Include="lib\libnet\ARP.h" />
+    <ClInclude Include="lib\libnet\Ethernet.h" />
+    <ClInclude Include="lib\libnet\IPV4.h" />
+    <ClInclude Include="lib\libnet\NetworkDevice.h" />
+    <ClInclude Include="lib\libnet\NetworkProtocol.h" />
+    <ClInclude Include="lib\libnet\NetworkQueue.h" />
+    <ClInclude Include="lib\libposix\ctype.h" />
+    <ClInclude Include="lib\libposix\dirent.h" />
+    <ClInclude Include="lib\libposix\dirent\closedir.h" />
+    <ClInclude Include="lib\libposix\errno.h" />
+    <ClInclude Include="lib\libposix\fcntl.h" />
+    <ClInclude Include="lib\libposix\FileDescriptor.h" />
+    <ClInclude Include="lib\libposix\FileSystemMount.h" />
+    <ClInclude Include="lib\libposix\libgen.h" />
+    <ClInclude Include="lib\libposix\limits.h" />
+    <ClInclude Include="lib\libposix\Runtime.h" />
+    <ClInclude Include="lib\libposix\stdarg.h" />
+    <ClInclude Include="lib\libposix\stdio.h" />
+    <ClInclude Include="lib\libposix\stdlib.h" />
+    <ClInclude Include="lib\libposix\string.h" />
+    <ClInclude Include="lib\libposix\sys\stat.h" />
+    <ClInclude Include="lib\libposix\sys\types.h" />
+    <ClInclude Include="lib\libposix\unistd.h" />
+    <ClInclude Include="lib\libstd\Assert.h" />
+    <ClInclude Include="lib\libstd\Associative.h" />
+    <ClInclude Include="lib\libstd\BitArray.h" />
+    <ClInclude Include="lib\libstd\BitOperations.h" />
+    <ClInclude Include="lib\libstd\Callback.h" />
+    <ClInclude Include="lib\libstd\Character.h" />
+    <ClInclude Include="lib\libstd\Comparable.h" />
+    <ClInclude Include="lib\libstd\Container.h" />
+    <ClInclude Include="lib\libstd\Factory.h" />
+    <ClInclude Include="lib\libstd\HashFunction.h" />
+    <ClInclude Include="lib\libstd\HashIterator.h" />
+    <ClInclude Include="lib\libstd\HashTable.h" />
+    <ClInclude Include="lib\libstd\Index.h" />
+    <ClInclude Include="lib\libstd\Iterator.h" />
+    <ClInclude Include="lib\libstd\List.h" />
+    <ClInclude Include="lib\libstd\ListIterator.h" />
+    <ClInclude Include="lib\libstd\Log.h" />
+    <ClInclude Include="lib\libstd\Macros.h" />
+    <ClInclude Include="lib\libstd\MemoryBlock.h" />
+    <ClInclude Include="lib\libstd\Sequence.h" />
+    <ClInclude Include="lib\libstd\Singleton.h" />
+    <ClInclude Include="lib\libstd\String.h" />
+    <ClInclude Include="lib\libstd\Types.h" />
+    <ClInclude Include="lib\libstd\Vector.h" />
+    <ClInclude Include="lib\libteken\teken.h" />
+    <ClInclude Include="server\core\CoreServer.h" />
+    <ClInclude Include="server\filesystem\LinnDirectory.h" />
+    <ClInclude Include="server\filesystem\LinnDirectoryEntry.h" />
+    <ClInclude Include="server\filesystem\LinnFile.h" />
+    <ClInclude Include="server\filesystem\LinnFileSystem.h" />
+    <ClInclude Include="server\filesystem\LinnGroup.h" />
+    <ClInclude Include="server\filesystem\LinnInode.h" />
+    <ClInclude Include="server\filesystem\LinnSupperBlock.h" />
+    <ClInclude Include="server\terminal\Terminal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\libarch\intel\IntelBoot16.S" />
+    <None Include="lib\libarch\intel\IntelBoot32.S" />
+    <None Include="lib\libarch\intel\IntelMultiBoot.S" />
+    <None Include="lib\libarch\intel\IntelState.S" />
+    <None Include="lib\libnet\NetworkServer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

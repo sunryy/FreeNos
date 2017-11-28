@@ -1,0 +1,131 @@
+#include "ProcessCtl.h"
+#include "intel/pc/System.h"
+#include "Kernel.h"
+#include "Config.h"
+#include "Process.h"
+#include "ProcessEvent.h"
+#include "Log.h"
+
+void interruptNotify(CPUState *st, Process *p){
+	ProcessEvent event;
+	event.type = InterruptEvent;
+	event.number = IRQ_REG(st);
+
+	p->raiseEvent(&event);
+}
+
+Error ProcessCtlHandler(ProcessID procID,
+	ProcessOperation action,
+	Address addr,
+	Address output)
+{
+	Process *proc = ZERO;
+	ProcessInfo *info = (ProcessInfo *)addr;
+	ProcessManager *procs = Kernel::instance->getProcessManager();
+	Timer *timer;
+	Arch::MemoryMap map;
+
+	DEBUG("#" << procs->current()->getID() << " " << action << " -> " << procID << " (" << addr << ")");
+	//TODO: Verify memory address
+	//Does the target process exist?
+	if (action != GetPID && action != Spawn)
+	{
+		if (procID == SELF)
+		{
+			proc = procs->current();
+		}
+		else if (!(proc=procs->get(procID)))
+		{
+			return API::NotFound;
+		}
+	}
+
+	//Handle request
+	switch (action)
+	{
+	case Spawn:
+		proc = procs->create(addr, map);
+		proc->setParent(procs->current()->getID());
+		return proc->getID();
+	case KillPID:
+		procs->remove(proc, addr);	//addr contains the exit status
+		procs->schedule();
+		break;
+	case GetPID:
+		return procs->current()->getID();
+	case GetParent:
+		return procs->current()->getParent();
+	case WatchIRQ:
+		Kernel::instance->hookIntVector(IRQ(addr), (InterruptHandler *)interruptNotify, (ulong)proc);
+		break;
+	case EnableIRQ:
+		Kernel::instance->enableIRQ(addr, true);
+		break;
+	case DisableIRQ:
+		Kernel::instance->enableIRQ(addr, false);
+		break;
+	case InfoPID:
+		info->id = proc->getID();
+		info->state = proc->getState();
+		info->userStack = proc->getUserStack();
+		info->kernelStack = proc->getKernelStack();
+		info->pageDirectory = proc->getPageDirectory();
+		info->parent = proc->getParent();
+		break;
+	case WaitPID:
+		procs->current()->setWait(proc->getID());
+		procs->current()->setState(Process::Waiting);
+		procs->schedule();
+		return procs->current()->getWait();	//contains the exit status of the other process
+	case InfoTimer:
+		if (!timer=Kernel::instance->getTimer()))
+		{
+			return API::NotFound;
+		}
+		timer.getCurrent((Timer::Info *)addr); //TODO::check access...
+		break;
+	case EnterSleep:
+		//only sleeps the process if no pending wakeups
+		if (procs->current()->sleep((Timer::Info *)addr) == Process::Success)
+		{
+			procs->schedule();
+		}
+		if (output && ((timer = Kernel::instance->getTimer())))
+		{
+			timer->getCurrent((Timer::Info *)output);//TODO: check access...
+		}
+		break;
+	case Schedule:
+		procs->schedule();
+		break;
+	case Resume:
+		proc->wakeup();
+		break;
+	case Setstack:
+		proc->setUserStack(addr);
+		break;
+	}
+	return API::Success;
+}
+
+Log &operator << (Log &log, ProcessOperation op){
+	switch (op)
+	{
+	case Spawn:     log.append("Spawn"); break;
+	case KillPID:   log.append("KillPID"); break;
+	case GetPID:    log.append("GetPID"); break;
+	case GetParent: log.append("GetParent"); break;
+	case WatchIRQ:  log.append("WatchIRQ"); break;
+	case EnableIRQ: log.append("EnableIRQ"); break;
+	case DisableIRQ:log.append("DisableIRQ"); break;
+	case InfoPID:   log.append("InfoPID"); break;
+	case WaitPID:   log.append("WaitPID"); break;
+	case InfoTimer: log.append("InfoTimer"); break;
+	case EnterSleep: log.append("EnterSleep"); break;
+	case Schedule:  log.append("Schedule"); break;
+	case Resume:    log.append("Resume"); break;
+	case SetStack:  log.append("SetStack"); break;
+	default:        log.append("???"); break;
+	}
+}
+
